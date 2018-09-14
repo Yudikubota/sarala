@@ -36,7 +36,7 @@
   "dependencies": {
     "lodash": "^4.17.10",
     "moment": "^2.22.1",
-    "sarala-json-api-data-formatter": "^1.0.3"
+    "sarala-json-api-data-formatter": "Yudikubota/sarala-json-api-data-formatter#cplug"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

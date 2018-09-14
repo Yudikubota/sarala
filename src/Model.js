@@ -6,10 +6,10 @@ import QueryBuilder from './QueryBuilder';
 const formatter = new Formatter();
 
 export default class Model {
-    constructor () {
+    constructor (type) {
         this.queryBuilder = new QueryBuilder();
+        this.type = type;
         this.selfValidate();
-        this.type = this.resourceName();
     }
 
     // override
@@ -182,7 +182,7 @@ export default class Model {
         if (_.isArray(fields)) {
             const selectFields = _.clone(fields);
             fields = {};
-            fields[this.resourceName()] = selectFields;
+            fields[this.type] = selectFields;
         }
 
         this.queryBuilder.select(fields);
@@ -321,7 +321,7 @@ export default class Model {
     // helpers
 
     resourceUrl () {
-        return `${this.baseUrl()}/${this.resourceName()}/`;
+        return `${this.baseUrl()}/${this.type}/`;
     }
 
     isCollection (data) {
@@ -337,10 +337,10 @@ export default class Model {
     }
 
     selfValidate () {
-        const name = this.resourceName();
+        const name = this.type;
 
         if (name === null || !_.isString(name) || name.length === 0) {
-            throw new Error(`Sarale: Resource name not defined in ${this.constructor.name} model. Implement resourceName method in the ${this.constructor.name} model to resolve this error.`);
+            throw new Error(`Sarala: Resource name not defined in ${this.constructor.name} model. Implement resourceName method in the ${this.constructor.name} model to resolve this error.`);
         }
     }
 
